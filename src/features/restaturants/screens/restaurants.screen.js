@@ -1,16 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ActivityIndicator, MD2Colors } from "react-native-paper";
 import { FlatList, TouchableOpacity } from "react-native";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import { SafeArea } from "../components/utility/safe-area.component";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
+import { FavoritesContext } from "../../../services/favorites/favorites.context";
 import { Search } from "../components/search.component";
 
 export const RestaurantsScreen = ({ navigation }) => {
   const { isLoading, error, restaurants } = useContext(RestaurantsContext);
+  const { favorites } = useContext(FavoritesContext);
+  const [isToggled, setIsToggled] = useState(false);
+
+  const onToggle = () => {
+    setIsToggled(!isToggled);
+  };
+
   return (
     <SafeArea>
-      <Search />
+      <Search onFavoritesToggle={onToggle} isFavoritesToggled={isToggled} />
       {isLoading ? (
         <ActivityIndicator
           animating={true}
