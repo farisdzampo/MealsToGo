@@ -42,6 +42,9 @@ export const Section = styled.View`
 export const SpacerLeftOne = styled.View`
   margin-left: 16px;
 `;
+export const SpacerRightOne = styled.View`
+  margin-right: 16px;
+`;
 export const ClosedText = styled.Text`
   color: ${(props) => props.theme.colors.text.error};
 `;
