@@ -45,6 +45,9 @@ export const SpacerLeftOne = styled.View`
 export const SpacerRightOne = styled.View`
   margin-right: 16px;
 `;
+export const SpacerBotOne = styled.View`
+  margin-bottom: 16px;
+`;
 export const ClosedText = styled.Text`
   color: ${(props) => props.theme.colors.text.error};
 `;
