@@ -8,15 +8,23 @@ import {
 
 import { SpacerBotOne } from "../../restaturants/components/restaurant-info-card.styles";
 
-export const AccountScreen = () => {
+export const AccountScreen = ({ navigation }) => {
   return (
     <AccountBackground>
       <AccountContainer>
-        <AuthButton icon="lock-open-outline" mode="contained">
+        <AuthButton
+          icon="lock-open-outline"
+          mode="contained"
+          onPress={() => navigation.navigate("Login")}
+        >
           Login
         </AuthButton>
         <SpacerBotOne />
-        <AuthButton icon="lock-open-outline" mode="contained">
+        <AuthButton
+          icon="email"
+          mode="contained"
+          onPress={() => navigation.navigate("Register")}
+        >
           Register
         </AuthButton>
       </AccountContainer>
