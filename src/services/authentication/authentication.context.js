@@ -1,8 +1,5 @@
 import React, { useState, createContext } from "react";
 
-import { initializeApp } from "firebase/app";
-import { initializeAuth } from "firebase/auth";
-
 import { loginRequest } from "./authentication.service";
 
 export const AuthenticationContext = createContext();
@@ -15,8 +12,8 @@ export const AuthenticationContextProvider = ({ children }) => {
   const onLogin = (email, password) => {
     setIsLoading(true);
     loginRequest(email, password)
-      .then((usr) => {
-        setUser(usr);
+      .then((u) => {
+        setUser(u);
         setIsLoading(false);
       })
       .catch((e) => {

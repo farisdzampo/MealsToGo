@@ -25,7 +25,7 @@ export const LoginScreen = () => {
           keyboardType="email-address"
           autoCapitalize="none"
           underlineColor="transparent"
-          onChangeText={(e) => setEmail(e)}
+          onChangeText={(u) => setEmail(u)}
         />
         <SpacerBotOne />
         <AuthInput
@@ -42,7 +42,7 @@ export const LoginScreen = () => {
         <AuthButton
           icon="lock-open-outline"
           mode="contained"
-          onPress={() => onLogin()}
+          onPress={() => onLogin(email, password)}
         >
           Login
         </AuthButton>
