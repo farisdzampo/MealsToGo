@@ -1,19 +1,30 @@
 import React, { useState, useContext } from "react";
+
+import { Ionicons } from "@expo/vector-icons";
+
+import { ActivityIndicator, MD2Colors } from "react-native-paper";
+
 import {
   AccountBackground,
   AccountContainer,
   AuthButton,
   AuthInput,
+  ErrorContainer,
+  ErrorText,
 } from "../components/account.styles";
 
 import { SpacerBotOne } from "../../restaturants/components/restaurant-info-card.styles";
 
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
-export const LoginScreen = () => {
+const lockIcon = () => (
+  <Ionicons name="lock-open-outline" size={24} color="white" />
+);
+
+export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { onLogin, error } = useContext(AuthenticationContext);
+  const { onLogin, isLoading, error } = useContext(AuthenticationContext);
 
   return (
     <AccountBackground>
@@ -34,19 +45,31 @@ export const LoginScreen = () => {
           textContentType="password"
           secureTextEntry
           autoCapitalize="none"
-          secure
           underlineColor="transparent"
           onChangeText={(p) => setPassword(p)}
         />
+        {error && (
+          <ErrorContainer>
+            <ErrorText>{error}</ErrorText>
+          </ErrorContainer>
+        )}
         <SpacerBotOne />
-        <AuthButton
-          icon="lock-open-outline"
-          mode="contained"
-          onPress={() => onLogin(email, password)}
-        >
-          Login
-        </AuthButton>
+        {!isLoading ? (
+          <AuthButton
+            icon={lockIcon}
+            mode="contained"
+            onPress={() => onLogin(email, password)}
+          >
+            Login
+          </AuthButton>
+        ) : (
+          <ActivityIndicator animating={true} color={MD2Colors.blue300} />
+        )}
       </AccountContainer>
+      <SpacerBotOne />
+      <AuthButton mode="contained" onPress={() => navigation.goBack()}>
+        Back
+      </AuthButton>
     </AccountBackground>
   );
 };

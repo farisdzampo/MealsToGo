@@ -1,4 +1,3 @@
-import { initializeApp } from "firebase/app";
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -17,8 +16,12 @@ import app from "../../config/firebase";
 
 // const app = initializeApp(firebaseConfig);
 
-const auth = getAuth();
+const auth = getAuth(app);
 
 export const loginRequest = (email, password) => {
   return signInWithEmailAndPassword(auth, email, password);
+};
+
+export const registerRequest = (email, password) => {
+  return createUserWithEmailAndPassword(auth, email, password);
 };

@@ -1,13 +1,31 @@
 import React, { useState, createContext } from "react";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
-import { loginRequest } from "./authentication.service";
+// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+// import app from "../../config/firebase";
+
+import { loginRequest, registerRequest } from "./authentication.service";
+import app from "../../config/firebase";
 
 export const AuthenticationContext = createContext();
+
+// const auth = getAuth(app);
 
 export const AuthenticationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
+
+  const auth = getAuth(app);
+
+  onAuthStateChanged(auth, (usr) => {
+    if (usr) {
+      setUser(usr);
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
+    }
+  });
 
   const onLogin = (email, password) => {
     setIsLoading(true);
@@ -18,7 +36,34 @@ export const AuthenticationContextProvider = ({ children }) => {
       })
       .catch((e) => {
         setIsLoading(false);
-        setError(e);
+        setError(e.toString());
+      });
+  };
+
+  const onRegister = (email, password, repeatedPassword) => {
+    setIsLoading(true);
+    if (password !== repeatedPassword) {
+      setError("Error: Passwords do not match");
+      return;
+    }
+    registerRequest(email, password)
+      .then((u) => {
+        setUser(u);
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        setIsLoading(false);
+        setError(e.toString());
+      });
+  };
+
+  const onLogout = () => {
+    signOut(auth)
+      .then(() => {
+        setUser(null);
+      })
+      .catch((e) => {
+        console.log("Error while signing out", e);
       });
   };
 
@@ -30,6 +75,8 @@ export const AuthenticationContextProvider = ({ children }) => {
         isLoading,
         error,
         onLogin,
+        onRegister,
+        onLogout,
       }}
     >
       {children}

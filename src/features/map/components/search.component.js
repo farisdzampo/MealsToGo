@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { Ionicons } from "@expo/vector-icons";
 import { Searchbar } from "react-native-paper";
 import styled from "styled-components";
 import { View } from "react-native";
@@ -11,6 +12,13 @@ const SearchContainer = styled(View)`
   width: 100%;
   top: 40px;
 `;
+
+const mapIcon = () => (
+  <Ionicons name="navigate-outline" size={24} color="black" />
+);
+const closeIcon = () => (
+  <Ionicons name="close-outline" size={30} color="black" />
+);
 
 export const Search = () => {
   const { keyword, search } = useContext(LocationContext);
@@ -27,7 +35,8 @@ export const Search = () => {
       <Searchbar
         placeholder="Search for a location"
         value={searchKeyword}
-        icon="navigation-variant-outline"
+        icon={mapIcon}
+        clearIcon={closeIcon}
         onSubmitEditing={() => {
           search(searchKeyword);
         }}

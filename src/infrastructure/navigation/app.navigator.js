@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Text } from "react-native";
 import { SafeArea } from "../../features/restaturants/components/utility/safe-area.component";
 import { Ionicons } from "@expo/vector-icons";
@@ -6,13 +6,21 @@ import { Ionicons } from "@expo/vector-icons";
 import { RestaurantsNavigator } from "./restaurants.navigator";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MapScreen } from "../../features/map/screens/map.screen";
+import { Button } from "react-native-paper";
+import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
 const Tab = createBottomTabNavigator();
-const Settings = () => (
-  <SafeArea>
-    <Text>Settings</Text>
-  </SafeArea>
-);
+const Settings = () => {
+  const { onLogout } = useContext(AuthenticationContext);
+  return (
+    <SafeArea>
+      <Text>Settings</Text>
+      <Button textColor="blue" buttonColor="red" onPress={() => onLogout()}>
+        Logout
+      </Button>
+    </SafeArea>
+  );
+};
 
 export const AppNavigator = () => {
   return (

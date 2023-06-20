@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { ThemeProvider } from "styled-components/native";
 import "@env";
-import { initializeApp } from "firebase/app";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+// import { initializeApp } from "firebase/app";
+// import {
+//   getAuth,
+//   createUserWithEmailAndPassword,
+//   signInWithEmailAndPassword,
+// } from "firebase/auth";
 
 import {
   useFonts as useOswald,
@@ -35,7 +35,7 @@ import { Navigation } from "./src/infrastructure/navigation";
 // const auth = getAuth(app);
 
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
   // useEffect(() => {
   //   signInWithEmailAndPassword(auth, "dzampica@dzampica.com", "test123")
   //     .then((userCredential) => {
