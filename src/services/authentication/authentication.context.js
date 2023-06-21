@@ -1,15 +1,10 @@
 import React, { useState, createContext } from "react";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
-// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-// import app from "../../config/firebase";
-
 import { loginRequest, registerRequest } from "./authentication.service";
 import app from "../../config/firebase";
 
 export const AuthenticationContext = createContext();
-
-// const auth = getAuth(app);
 
 export const AuthenticationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -61,6 +56,7 @@ export const AuthenticationContextProvider = ({ children }) => {
     signOut(auth)
       .then(() => {
         setUser(null);
+        setError(null);
       })
       .catch((e) => {
         console.log("Error while signing out", e);
