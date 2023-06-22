@@ -1,6 +1,4 @@
-import React, { useContext } from "react";
-import { Text } from "react-native";
-import { SafeArea } from "../../features/restaturants/components/utility/safe-area.component";
+import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 
 import { FavoritesContextProvider } from "../../services/favorites/favorites.context";
@@ -8,23 +6,11 @@ import { LocationContextProvider } from "../../services/location/location.contex
 import { RestaurantsContextProvider } from "../../services/restaurants/restaurants.context";
 
 import { RestaurantsNavigator } from "./restaurants.navigator";
+import { SettingsNavigator } from "./settings.navigator";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MapScreen } from "../../features/map/screens/map.screen";
-import { Button } from "react-native-paper";
-import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
 const Tab = createBottomTabNavigator();
-const Settings = () => {
-  const { onLogout } = useContext(AuthenticationContext);
-  return (
-    <SafeArea>
-      <Text>Settings</Text>
-      <Button textColor="blue" buttonColor="red" onPress={() => onLogout()}>
-        Logout
-      </Button>
-    </SafeArea>
-  );
-};
 
 export const AppNavigator = () => {
   return (
@@ -68,7 +54,7 @@ export const AppNavigator = () => {
             />
             <Tab.Screen
               name="Settings"
-              component={Settings}
+              component={SettingsNavigator}
               options={{
                 headerShown: false,
               }}

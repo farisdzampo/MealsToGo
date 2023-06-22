@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
-import { Button, TextInput } from "react-native-paper";
+import { Button, List, TextInput } from "react-native-paper";
 
 import { colors } from "../../../infrastructure/theme/colors";
 
@@ -50,5 +50,27 @@ export const ErrorContainer = styled.View`
 
 export const ErrorText = styled.Text`
   color: darkred;
+  padding: 4px;
+`;
+
+export const SettingsItem = styled(List.Item)`
+  padding: ${(props) => props.theme.space[3]};
+`;
+
+export const AvatarContainer = styled.View`
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+`;
+
+export const SettingsEmailText = styled.Text`
+  color: black;
+  font-weight: medium;
+  font-size: 24px;
+`;
+
+export const FavErrorText = styled.Text`
+  color: darkred;
+  font-size: 20px;
   padding: 4px;
 `;
