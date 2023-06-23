@@ -10,7 +10,6 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 
 import { SettingsItem } from "../../account/components/account.styles";
 import { AvatarContainer } from "../../account/components/account.styles";
-import { Text } from "react-native";
 import { SpacerBotOne } from "../../restaturants/components/restaurant-info-card.styles";
 import { SettingsEmailText } from "../../account/components/account.styles";
 
@@ -42,7 +41,7 @@ export const SettingsScreen = ({ navigation }) => {
           left={(props) => (
             <List.Icon {...props} color="black" icon={heartIcon} />
           )}
-          onPress={() => navigation.navigate("FavoritesScreen")}
+          onPress={() => navigation.navigate("Favorites")}
         />
         <SettingsItem
           title="Logout"

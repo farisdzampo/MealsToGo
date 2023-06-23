@@ -19,12 +19,9 @@ export default {
     },
     android: {
       adaptiveIcon: {
-        foregroundImage: "./assets/adaptive-icon.png",
+        foregroundImage: "./assets/icon.png",
         backgroundColor: "#ffffff",
       },
-    },
-    web: {
-      favicon: "./assets/favicon.png",
     },
     extra: {
       firebaseApiKey: process.env.FIREBASE_API_KEY,

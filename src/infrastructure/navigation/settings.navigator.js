@@ -21,13 +21,10 @@ export const SettingsNavigator = ({ route, navigation }) => {
         options={{
           header: () => null,
         }}
-        name="SettingsScreen"
+        name="Settings"
         component={SettingsScreen}
-      ></SettingsStack.Screen>
-      <SettingsStack.Screen
-        name="FavoritesScreen"
-        component={FavoritesScreen}
-      ></SettingsStack.Screen>
+      />
+      <SettingsStack.Screen name="Favorites" component={FavoritesScreen} />
     </SettingsStack.Navigator>
   );
 };
