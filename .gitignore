@@ -17,3 +17,9 @@ web-build/
 .metro-health-check*
 
 .env
+
+*/node_modules/**/*
+
+functions
+
+
